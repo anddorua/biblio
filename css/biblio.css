@@ -1,0 +1,281 @@
+body {
+    padding-top: 70px;
+}
+
+.book-search-section {
+    padding-bottom: 16px;
+    border-bottom: 2px solid #333333;
+}
+
+.user-search-section {
+    padding-bottom: 16px;
+    border-bottom: 2px solid #333333;
+}
+
+#user-issue-form {
+    padding-bottom: 16px;
+    border-bottom: 2px solid #333333;
+}
+
+.book-list {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.user-list {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.book-list li {
+    display: block;
+    position: relative;
+    padding: 20px 20px 20px 10px;
+    border-bottom: 1px solid #ccc;
+    background: inherit;
+}
+
+.user-list li {
+    display: block;
+    list-style: none;
+    position: relative;
+    padding: 20px 20px 20px 10px;
+    border-bottom: 1px solid #ccc;
+    background: inherit;
+}
+
+.ul-description {
+    margin-right: 170px;
+}
+
+.bl-description {
+    margin-right: 170px;
+}
+
+.bl-storage-info {
+    position: absolute;
+    right: 100px;
+    top: 50%;
+    width: 50px;
+    height: 36px;
+    margin-top: -18px;
+    padding-top: 8px;
+    padding-left: 10px;
+}
+
+.bl-action-pad {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    width: 40px;
+    height: 36px;
+    margin-top: -18px;
+    padding-top: 0px;
+}
+
+.ul-hold {
+    position: absolute;
+    right: 126px;
+    top: 50%;
+    width: 40px;
+    height: 36px;
+    margin-top: -18px;
+    padding-top: 8px;
+    padding-left: 10px;
+}
+
+.ul-action-pad {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    width: 120px;
+    height: 36px;
+    margin-top: -18px;
+    padding-top: 0px;
+}
+
+#book-form {
+    display: none;
+}
+
+#section-books-book-list {
+    display: none;
+}
+
+#user-form {
+    display: none;
+}
+
+#user-issue {
+    display: none;
+}
+
+#section-user-list {
+    display: none;
+}
+
+.bl-isbn {
+    display: inline;
+}
+
+.bl-year {
+    display: inline;
+}
+
+.ui-book-choice ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.ui-book-choice ul li{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.ui-book-choice ul li:hover{
+    background: #0000ff;
+    color: #FFFFFF;
+}
+
+.bitc-title {
+
+}
+
+.bitc-author {
+    font-weight: bold;
+    display: inline;
+}
+
+.bitc-isbn {
+    display: inline;
+}
+
+.bitc-year {
+    display: inline;
+}
+
+.ui-book-list ul {
+    padding-left: 0px;
+    border-top: 1px solid #ccc;
+}
+
+.ui-book-list li {
+    display: block;
+    list-style: none;
+    position: relative;
+    padding: 10px 10px 10px 10px;
+    border-bottom: 1px solid #ccc;
+    background: inherit;
+}
+.biti-description {
+    margin-right: 30px;
+}
+
+.biti-amount-info {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    width: 40px;
+    height: 36px;
+    margin-top: -18px;
+    padding-top: 8px;
+    padding-left: 10px;
+}
+
+.biti-action-pad {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    width: 40px;
+    height: 36px;
+    margin-top: -18px;
+    padding-top: 0px;
+}
+
+.biti-title {
+
+}
+
+.biti-author {
+    font-weight: bold;
+    display: inline;
+}
+
+.biti-isbn {
+    display: inline;
+}
+
+.biti-year {
+    display: inline;
+}
+
+#book-holders-table {
+    margin-top: 20px;
+}
+
+#user-books-table {
+    margin-top: 20px;
+}
+
+#user-return {
+    display: none;
+}
+
+.ur-book-list ul {
+    padding-left: 0px;
+    border-top: 1px solid #ccc;
+    list-style: none;
+}
+
+.ur-book-list li {
+    display: block;
+    position: relative;
+    padding: 16px 10px 16px 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.urbl-description {
+    margin-right: 90px;
+}
+
+.urbl-control-pad {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    width: 70px;
+    height: 36px;
+    margin-top: -18px;
+    padding-top: 0px;
+    margin-right: 10px;
+}
+
+.non-empty-return {
+    background-color: #d9edf7;
+}
+
+#section-login {
+    display: none;
+}
+
+#lf-form {
+    max-width: 330px;
+    margin: 0 auto;
+}
+
+#lf-submit {
+    width: 100%;
+}
+
+#top-nav-section {
+    display: none;
+}
+
+#section-error-alert {
+    display: none;
+}
+
+#oper-settings-section {
+    display: none;
+}

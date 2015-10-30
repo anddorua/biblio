@@ -1,0 +1,3 @@
+[
+  {"id": 1, "author":"Author1", "title":"Title1", "isbn":"1234567890123", "year": 1973, "owned_count": 3, "store_count": 1}
+]

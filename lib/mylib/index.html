@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="autocomplete.css" rel="stylesheet">
+    <script type="text/javascript" src="autocomplete.js"></script>
+</head>
+<body>
+Hello my friend
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+Hello my friend
+<div class="autocomplete-wrapper">
+    <input type="text" name="input-field" id="id1" data-autocomplete-maxsize="6">
+    <div id="auto-list" class="autocomplete-list">
+        <ul>
+            <li>one</li>
+            <li>second word</li>
+            <li class="selected">third word</li>
+            <li>fourth word</li>
+			<!--
+            <li>fifth word</li>
+            <li>sixth word</li>
+            <li>seventh word</li>
+            <li>seighth word</li>
+            <li>nineth word</li>
+			-->
+        </ul>
+    </div>
+</div>
+some text <br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+<input type="text" name="input-field2" id="id2" data-autocomplete-maxsize="6" style="width:200px;">
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+<script type="text/javascript">
+    var itemSource = function(sample, clueHandler){
+        setTimeout(function(){
+            var words = ["Симферополь", "Армянск", "Джанкой", "Евпатория", "Зелёный Яр", "Керчь", "Красноперекопск", "Красносельское", "Новосельское", "Партенит", "Плодовое", "Феодосия", "Щёлкино", "Ялта", "Киев ", "Севастополь ", "Винницкая область ", "мачта труба здание", "Винница", "Балановка", "Ладыжин", "Волынская область	", "мачта", "Луцк", "Владимир-Волынский", "Ковель", "Нововолынск", "Днепропетровск", "Булаховка", "Вовниги", "Днепродзержинск", "Жёлтые Воды", "Зеленодольск", "Каменно-Зубиловка", "Кривой Рог", "Кринички", "Марганец", "Никополь", "Новомосковск", "Павлоград", "Донецк", "Авдеевка", "Андреевка", "Артёмовск", "Безимянное", "Белосарайская Коса", "Бересток", "Волноваха", "Горловка", "Енакиево", "Зугрес", "Константиновка", "Краматорск", "Красноармейск", "Курахово", "Макеевка", "Мариуполь", "Николаевка", "Райгородок", "Светлодарск", "Святогорск", "Славянск", "Снежное", "Торез", "Шахтёрск", "Житомир", "Андреевка", "Бердичев", "Коростень", "Новоград-Волынский", "Олевск", "Ужгород", "Берегово", "Виноградов", "Иршава", "Мукачево", "Рахов", "Свалява", "Тячев", "Хуст", "Запорожье", "Бердянск", "Днепрорудное", "Камыш-Заря", "Мелитополь", "Токмак", "Орловское", "Приморский Посад", "Энергодар", "Ивано-Франковск", "Бурштын", "Калуш", "Коломыя", "Белая Церковь", "Борисполь", "Бровары", "Вышгород", "Ирпень", "Коцюбинское", "Петропавловская Борщаговка", "Припять", "Украинка", "Кировоград", "Александрия", "Луганск", "Алчевск", "Антрацит", "Белолуцк", "Верхнешевыревка", "Ирмино", "Краснодон", "Красный Луч", "Лисичанск", "Ровеньки", "Рубежное", "Свердловск", "Северодонецк", "Старобельск", "Стаханов", "Счастье", "Чернухино", "Львов", "Дрогобыч", "Красное", "Стрый", "Трускавец", "Червоноград", "Николаев", "Вознесенск", "Дмитровка", "Луч", "Очаков", "Первомайск", "Тузлы", "Южноукраинск", "Одесса", "Белгород-Днестровский", "Вестерничаны", "Жовтень", "Измаил", "Ильичевск", "Каменское", "Ковалёвка", "Новокубанка", "Орловка", "Петровка", "Южный", "Полтава", "Красногоровка", "Кременчуг", "Лубны", "Ровно", "Антополь", "Кузнецовск", "Сумы", "Ахтырка", "Белополье", "Конотоп", "Кролевец", "Ромны", "Тростянец", "Шостка", "Тернополь", "Лозовая", "Харьков", "Барвенково", "Балаклея", "Змиёв", "Изюм", "Кегичёвка", "Комсомольское", "Мерефа", "Лозовая", "Подворки", "Тарановка", "Херсон", "Васильевка", "Геническ", "Большая Александровка", "Новая Каховка", "Новотроицкое", "Рыбальче", "Чаплинка", "Хмельницкий", "Волочиск", "Каменец-Подольский", "Кульчиевцы", "Нетешин", "Черкассы", "Буки", "Канев", "Смела", "Умань", "Чернигов", "Козелец", "Бахмач", "Круты", "Нежин", "Новгород-Северский", "Прилуки", "Черновцы", "Новоднестровск"];
+            var sampleLower = sample.toLowerCase();
+            var result = words.filter(function(word){
+                return word.toLowerCase().indexOf(sampleLower) >= 0;
+            });
+            clueHandler(sample, result.sort())
+        }, 1);
+    };
+    var auto = new Autocomplete(document.getElementById("id2"), itemSource);
+</script>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+<button onclick="auto.remove()">remove</button>
+<script type="text/javascript">
+
+</script>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+yet another text down the line kasjhdkn kasdjc asdb aklfv alfv alkdv alkfjvhav ajhfva h<br>
+</body>
+</html>

@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Библиотека</title>
+
+    <!-- Bootstrap -->
+    <link href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/mylib/autocomplete.css" rel="stylesheet">
+    <link href="css/biblio.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="lib/mylib/autocomplete.js"></script>
+    <script type="text/javascript" src="js/services/BiblioXHR.js"></script>
+    <script type="text/javascript" src="js/models/BookItem.js"></script>
+    <script type="text/javascript" src="js/models/UserItem.js"></script>
+    <script type="text/javascript" src="js/models/localStorage.js"></script>
+    <script type="text/javascript" src="js/models/remoteStorage.js"></script>
+    <script type="text/javascript" src="js/services/html.js"></script>
+    <script type="text/javascript" src="js/services/pubsub.js"></script>
+    <script type="text/javascript" src="js/views/mainMenu.js"></script>
+    <script type="text/javascript" src="js/views/errorAlert.js"></script>
+    <script type="text/javascript" src="js/views/bookList.js"></script>
+    <script type="text/javascript" src="js/views/bookAdd.js"></script>
+    <script type="text/javascript" src="js/views/userList.js"></script>
+    <script type="text/javascript" src="js/views/userAdd.js"></script>
+    <script type="text/javascript" src="js/views/bookIssue.js"></script>
+    <script type="text/javascript" src="js/views/bookReturn.js"></script>
+    <script type="text/javascript" src="js/views/login.js"></script>
+    <script type="text/javascript" src="js/views/settings.js"></script>
+    <script type="text/javascript" src="js/controllers/mainMenu.js"></script>
+    <script type="text/javascript" src="js/controllers/errorAlert.js"></script>
+    <script type="text/javascript" src="js/controllers/bookList.js"></script>
+    <script type="text/javascript" src="js/controllers/bookAdd.js"></script>
+    <script type="text/javascript" src="js/controllers/userList.js"></script>
+    <script type="text/javascript" src="js/controllers/userAdd.js"></script>
+    <script type="text/javascript" src="js/controllers/bookIssue.js"></script>
+    <script type="text/javascript" src="js/controllers/bookReturn.js"></script>
+    <script type="text/javascript" src="js/controllers/login.js"></script>
+    <script type="text/javascript" src="js/controllers/settings.js"></script>
+    <script type="text/javascript" src="js/services/router.js"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            var app = {
+                mainMenuController: biblio.controllers.mainMenu,
+                mainMenuView: biblio.views.mainMenu,
+                errorAlertController: biblio.controllers.errorAlert,
+                loginHash: "login",
+                settingsHash: "settings"
+            };
+            var routes = [
+                { hash: "books", ctrl: biblio.controllers.mainMenu, view: biblio.views.mainMenu },
+                { hash: "books:list", ctrl: biblio.controllers.mainMenu, view: biblio.views.mainMenu },
+                { hash: "books:add", ctrl: biblio.controllers.mainMenu, view: biblio.views.mainMenu },
+                { hash: "users", ctrl: biblio.controllers.mainMenu, view: biblio.views.mainMenu },
+                { hash: "users:list", ctrl: biblio.controllers.mainMenu, view: biblio.views.mainMenu },
+                { hash: "users:add", ctrl: biblio.controllers.mainMenu, view: biblio.views.mainMenu },
+                { hash: "users:issue", ctrl: biblio.controllers.mainMenu, view: biblio.views.mainMenu },
+                { hash: "users:return", ctrl: biblio.controllers.mainMenu, view: biblio.views.mainMenu },
+                { hash: "settings", ctrl: biblio.controllers.mainMenu, view: biblio.views.mainMenu },
+
+                { hash: "books", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+                { hash: "books:list", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+                { hash: "books:add", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+                { hash: "users", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+                { hash: "users:list", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+                { hash: "users:add", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+                { hash: "users:issue", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+                { hash: "users:return", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+                { hash: "login", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+                { hash: "settings", ctrl: biblio.controllers.errorAlert, view: biblio.views.errorAlert },
+
+                { hash: "login", ctrl: biblio.controllers.login, view: biblio.views.login },
+                { hash: "settings", ctrl: biblio.controllers.settings, view: biblio.views.settings },
+                { hash: "books:list", ctrl: biblio.controllers.bookList, view: biblio.views.bookList },
+                { hash: "books:add", ctrl: biblio.controllers.bookAdd, view: biblio.views.bookAdd },
+                { hash: "users:list", ctrl: biblio.controllers.userList, view: biblio.views.userList },
+                { hash: "users:add", ctrl: biblio.controllers.userAdd, view: biblio.views.userAdd },
+                { hash: "users:issue", ctrl: biblio.controllers.bookIssue, view: biblio.views.bookIssue },
+                { hash: "users:return", ctrl: biblio.controllers.bookReturn, view: biblio.views.bookReturn }
+            ];
+            //biblio.services.router.start(app, routes, biblio.models.localStorage);
+            biblio.services.router.start(app, routes, biblio.models.remoteStorage);
+        };
+    </script>
+</head>
+<body>
+
+<script type="template" id="book-item-template">
+    <li>
+        <div class="bl-description">
+            <div class="bl-author">{{author}}</div>
+            <div class="bl-title">{{title}}</div>
+            <div class="bl-isbn">{{isbn}}</div>
+            <div class="bl-year">{{year}}</div>
+        </div>
+        <div class="bl-storage-info">
+            {{storeCount}} / {{ownedCount}}
+        </div>
+        <div class="bl-action-pad">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" data-action="edit" data-book-id="{{id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+            </div>
+        </div>
+    </li>
+</script>
+
+<script type="template" id="user-item-template">
+    <li>
+        <div class="ul-description">
+            <div class="ul-name">{{userName}}</div>
+            <div class="ul-address">{{address}}</div>
+            <div class="ul-phone">{{phone}}</div>
+            <div class="ul-birthdate">{{dateofbirth}}</div>
+        </div>
+        <div class="ul-hold">
+            {{holdCount}}
+        </div>
+        <div class="ul-action-pad">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" data-action="edit" data-user-id="{{id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-default" data-action="out" data-user-id="{{id}}"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-default" data-action="return" data-user-id="{{id}}"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
+            </div>
+        </div>
+    </li>
+</script>
+
+<script type="template" id="ui-book-item-to-choose-template">
+    <li data-book-id="{{id}}">
+        <div class="bitc-title">{{title}}</div>
+        <div class="bitc-author">{{author}}</div>
+        <div class="bitc-isbn">{{isbn}}</div>
+        <div class="bitc-year">{{year}}</div>
+    </li>
+</script>
+
+<script type="template" id="book-holder-item-template">
+    <tr data-user-id="{{userId}}" data-issue-date="{{issueDate}}">
+        <td class="col-sm-3">{{when}}</td>
+        <td class="col-sm-1">{{amount}}</td>
+        <td>{{reader}}</td>
+    </tr>
+</script>
+
+<script type="template" id="user-book-item-template">
+    <tr data-book-id="{{bookId}}" data-issue-date="{{issueDate}}">
+        <td class="col-sm-3">{{when}}</td>
+        <td class="col-sm-1">{{amount}}</td>
+        <td>{{description}}</td>
+    </tr>
+</script>
+
+<script type="template" id="ui-book-item-to-issue-template">
+    <li>
+        <div class="biti-description">
+            <div class="biti-title">{{title}}</div>
+            <div class="biti-author">{{author}}</div>
+            <div class="biti-isbn">{{isbn}}</div>
+            <div class="biti-year">{{year}}</div>
+        </div>
+        <div class="biti-amount-info">
+            {{amount}}
+        </div>
+        <div class="biti-action-pad">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" data-action="edit" data-book-id="{{id}}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            </div>
+        </div>
+    </li>
+</script>
+
+<script type="template" id="ur-book-item-to-return-template">
+    <li>
+        <div class="urbl-description">{{description}}</div>
+        <div class="urbl-control-pad">
+            <input type="number" class="form-control" data-book-id="{{bookId}}" min="0" max="{{maxAmount}}" value="{{amount}}">
+        </div>
+    </li>
+</script>
+
+
+<nav class="navbar navbar-default navbar-fixed-top" id="top-nav-section">
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li id="nav-menu-item-books"><a id="nav-books"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Книги</a></li>
+            <li id="nav-menu-item-users"><a id="nav-users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Читатели</a></li>
+            <li id="nav-menu-item-settings"><a id="nav-settings"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Настройки</a></li>
+        </ul>
+        <div class="nav navbar-right">
+            <p class="navbar-text" id="nav-oper-name">Signed in as Mark Otto</p>
+            <ul class="nav navbar-nav">
+                <li id="nav-menu-item-logout"><a id="nav-logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Выход&nbsp;</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" id="section-error-alert">
+    <div class="alert alert-danger" role="alert"></div>
+</div>
+
+<div class="container" id="section-login">
+    <form id="lf-form">
+        <div class="form-group">
+            <label for="lf-login">Логин</label>
+            <input type="text" class="form-control" name="login" id="lf-login">
+        </div>
+        <div class="form-group">
+            <label for="lf-password">Пароль</label>
+            <input type="password" class="form-control" name="password" placeholder="password" id="lf-password">
+        </div>
+        <div class="alert alert-danger" role="alert" id="lf-fail-alert" style="width:100%">
+            Неудачная аутентификация
+        </div>
+        <button type="button" class="btn btn-primary" id="lf-submit">Вход</button>
+    </form>
+</div>
+
+<div class="container" id="section-books">
+    <div id="section-books-book-list">
+        <!-- book search section -->
+        <div class="book-search-section">
+            <form class="form-inline" name="book-search-form" id="book-search-form">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <input type="text" id="bsf-author" class="form-control" name="book-search-author" placeholder="Автор: фамилия имя отчество" style="width: 100%;"/>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" id="bsf-title" class="form-control" name="book-search-title" placeholder="Название книги" style="width: 100%;"/>
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="bsf-isbn" class="form-control" name="book-search-isbn" placeholder="ISBN" style="width: 100%;"/>
+                    </div>
+                    <button type="button" class="btn btn-default" id="bsf-search-btn">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" id="bsf-add-btn">+</button>
+                </div>
+            </form>
+        </div>
+        <!-- book list section -->
+        <ul class="book-list">
+        </ul>
+    </div>
+
+    <!-- book add form section -->
+    <div id="book-form">
+        <form class="form-horizontal" id="book-form-form">
+            <input type="text" name="id" hidden>
+            <div class="form-group">
+                <label for="book-form-author" class="col-sm-2 control-label">Автор</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="book-form-author" name="author" placeholder="фамилия имя отчество">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-form-title" class="col-sm-2 control-label">Название</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="book-form-title" name="title" placeholder="полное название книги">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-form-isbn" class="col-sm-2 control-label">ISBN</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="book-form-isbn" name="isbn" placeholder="код ISBN">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-form-year" class="col-sm-2 control-label">Год издания</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" id="book-form-year" name="year" placeholder="год издания">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-form-adding" class="col-sm-2 control-label">Приходуется</label>
+                <div class="col-sm-1">
+                    <input type="number" class="form-control" id="book-form-adding" name="adding" value="1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-form-owned" class="col-sm-2 control-label">Имеется</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" id="book-form-owned" name="ownedCount" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-form-comment" class="col-sm-2 control-label">Комментарий</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="book-form-comment" name="comment">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" id="bf-submit" type="button">Ok</button>
+                <button class="btn btn-default" id="bf-cancel" type="button">Cancel</button>
+            </div>
+        </form>
+        <table class="table table-hover" id="book-holders-table">
+        </table>
+    </div>
+
+    <!-- секция пользователи -->
+    <div id="section-user-list">
+        <!-- user search section -->
+        <div class="user-search-section">
+            <form class="form-inline" name="user-search-form" id="user-search-form">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <input type="text" id="usf-surname" class="form-control" name="user-search-surname" placeholder="Читатель: фамилия" style="width: 100%;"/>
+                    </div>
+                    <button type="button" class="btn btn-default" id="usf-search-btn">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" id="usf-add-btn">+</button>
+                </div>
+            </form>
+        </div>
+        <!-- user list section -->
+        <ul class="user-list">
+        </ul>
+    </div>
+
+    <!-- user add form section -->
+    <div id="user-form">
+        <form class="form-horizontal" id="user-form-form">
+            <div class="form-group">
+                <label for="user-form-surname" class="col-sm-2 control-label">Фамилия</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user-form-surname" name="surname" placeholder="фамилия">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user-form-firstname" class="col-sm-2 control-label">Имя</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user-form-firstname" name="firstname" placeholder="имя">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user-form-middlename" class="col-sm-2 control-label">Отчество</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user-form-middlename" name="middlename" placeholder="отчество">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user-form-address" class="col-sm-2 control-label">Адрес</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user-form-address" name="address" placeholder="домашний адрес">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user-form-dateofbirth" class="col-sm-2 control-label">Дата рождения</label>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" id="user-form-dateofbirth" name="dateofbirth">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user-form-phone" class="col-sm-2 control-label">Телефон</label>
+                <div class="col-sm-3">
+                    <input type="tel" class="form-control" id="user-form-phone" name="phone">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" id="uf-submit" type="button">Ok</button>
+                <button class="btn btn-default" id="uf-cancel" type="button">Cancel</button>
+            </div>
+        </form>
+        <table class="table table-hover" id="user-books-table">
+        </table>
+
+    </div>
+
+    <!-- issue books form -->
+    <div id="user-issue">
+        <form class="form-horizontal" name="user-issue-form" id="user-issue-form" autocomplete="off">
+            <input type="text" name="userId" hidden="true">
+            <div class="form-group">
+                <label for="uif-fullname" class="col-sm-2 control-label">Читатель</label>
+                <div class="col-sm-10">
+                    <input type="text" id="uif-fullname" class="form-control" name="fullname" width="100%" readonly/>
+                </div>
+            </div>
+            <input type="text" name="bookId" hidden="true">
+            <div class="form-group">
+                <label for="uif-author" class="col-sm-2 control-label">Автор</label>
+                <div class="col-sm-10">
+                    <input type="text" id="uif-author" class="form-control" name="author" width="100%"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="uif-title" class="col-sm-2 control-label">Название</label>
+                <div class="col-sm-10">
+                    <input type="text" id="uif-title" class="form-control" name="title" width="100%"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="uif-year" class="col-sm-2 control-label">Год издания</label>
+                <div class="col-sm-3">
+                    <input type="text" id="uif-year" class="form-control" name="year" width="100%"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="uif-isbn" class="col-sm-2 control-label">ISBN</label>
+                <div class="col-sm-3">
+                    <input type="text" id="uif-isbn" class="form-control" name="isbn" width="100%"/>
+                </div>
+            </div>
+            <div id="uif-book-count-section">
+                <div class="form-group">
+                    <label for="uif-amount" class="col-sm-2 control-label">Количество</label>
+                    <div class="col-sm-2">
+                        <input type="number" id="uif-amount" class="form-control" name="amount" width="100%"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10">
+                        <button class="btn btn-primary" id="uif-book-add">Ok</button>
+                        <button class="btn btn-default" id="uif-book-cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="ui-book-choice" id="ui-book-choice">
+            <ul>
+
+            </ul>
+        </div>
+        <div class="ui-book-list" id="ui-book-list">
+            <ul>
+
+            </ul>
+        </div>
+        <div>
+            <button class="btn btn-primary" id="uif-submit" type="button" form="user-issue-form">Ok</button>
+            <button class="btn btn-default" id="uif-cancel" type="button" form="user-issue-form">Cancel</button>
+        </div>
+    </div>
+
+    <!-- return books form -->
+    <div id="user-return">
+        <form class="form-horizontal" name="user-return-form" id="user-return-form" autocomplete="off">
+            <input type="text" name="userId" hidden="true">
+            <div class="form-group">
+                <label for="urf-fullname" class="col-sm-2 control-label">Читатель</label>
+                <div class="col-sm-10">
+                    <input type="text" id="urf-fullname" class="form-control" name="fullname" width="100%" readonly/>
+                </div>
+            </div>
+        </form>
+        <div class="ur-book-list" id="ur-book-list">
+            <ul>
+                <li>
+                    <div class="urbl-description">книга-фига</div>
+                    <div class="urbl-control-pad">
+                        <input type="number" class="form-control" data-book-id="2" min="0" max="2" value="0">
+                    </div>
+                </li>
+                <li class="non-empty-return">
+                    <div class="urbl-description">книга-фига jjkghjkgkj kjgh kjgh</div>
+                    <div class="urbl-control-pad">
+                        <input type="number" class="form-control" data-book-id="3" min="0" max="1" value="1">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <button class="btn btn-primary" id="urf-submit" type="button" form="user-issue-form">Возврат</button>
+            <button class="btn btn-default" id="urf-cancel" type="button" form="user-issue-form">Cancel</button>
+        </div>
+    </div>
+
+    <!-- oper settings form -->
+    <div id="oper-settings-section">
+        <form class="form-horizontal" name="settings-form" id="settings-form" autocomplete="off">
+            <div class="form-group">
+                <label for="os-login" class="col-sm-3 control-label">Логин</label>
+                <div class="col-sm-9">
+                    <input type="text" id="os-login" class="form-control" name="login" width="100%" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="os-firstname" class="col-sm-3 control-label">Имя</label>
+                <div class="col-sm-9">
+                    <input type="text" id="os-firstname" class="form-control" name="firstname" width="100%" autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="os-lastname" class="col-sm-3 control-label">Фамилия</label>
+                <div class="col-sm-9">
+                    <input type="text" id="os-lastname" class="form-control" name="lastname" width="100%" autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="os-password" class="col-sm-3 control-label">Действующий пароль</label>
+                <div class="col-sm-9">
+                    <input type="password" id="os-password" class="form-control" name="password" width="100%" autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="os-password-new1" class="col-sm-3 control-label">Новый пароль</label>
+                <div class="col-sm-9">
+                    <input type="password" id="os-password-new1" class="form-control" name="password-new1" width="100%" autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="os-password-new2" class="col-sm-3 control-label">Новый пароль повторно</label>
+                <div class="col-sm-9">
+                    <input type="password" id="os-password-new2" class="form-control" name="password-new2" width="100%" autocomplete="off">
+                </div>
+            </div>
+            <div class="col-sm-offset-3">
+                <button class="btn btn-primary" id="os-submit" type="button" form="settings-form">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
