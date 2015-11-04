@@ -5,3 +5,5 @@ SPA exersice, book library management SPA application. Includes custom autocompl
 В файле classes/constants.php пропишите параметры для входа в базу данных.
 Запустите index.html. При запуске программа создаст нужные таблицы в БД
 и пользователя root с пустым паролем. Зайдите под этим логином в программу.
+Приложение не использует сторонние библиотеки кроме стилей Bootstrap.
+PS. Тесты не рабочие.
